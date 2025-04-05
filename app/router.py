@@ -1,11 +1,10 @@
 from fastapi import APIRouter
+
 from app.telegram.tg_actions import process_user_stories
 from app.telegram.tg_client import client
 
-
-
 router = APIRouter(
-    tags=['Сервис для лайканья сторис в Телеграме'],
+    tags=["Сервис для лайканья сторис в Телеграме"],
 )
 
 

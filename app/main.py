@@ -1,10 +1,12 @@
-from fastapi import FastAPI
-from app.telegram.tg_client import client
-from app.telegram.tg_actions import process_user_stories
 from contextlib import asynccontextmanager
-from app.router import router
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.config import settings
+from app.router import router
+from app.telegram.tg_actions import process_user_stories
+from app.telegram.tg_client import client
 
 
 @asynccontextmanager
@@ -27,9 +29,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-
-
-
-

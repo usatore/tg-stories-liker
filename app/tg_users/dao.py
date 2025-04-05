@@ -1,9 +1,13 @@
-from app.tg_users.models import TGUsers
 from datetime import datetime, timezone
+
+from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
+
 from app.dao.base import BaseDAO
 from app.database import async_session_maker
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import select
+from app.tg_users.models import TGUsers
+
+
 class TGUsersDAO(BaseDAO):
     model = TGUsers
 
@@ -11,7 +15,7 @@ class TGUsersDAO(BaseDAO):
     async def get_tg_user_by_tg_id(cls, tg_id: int) -> TGUsers | None:
         async with async_session_maker() as session:
             result = await session.execute(
-                select(cls.model).filter(cls.model.tg_id==tg_id)
+                select(cls.model).filter(cls.model.tg_id == tg_id)
             )
             tg_user = result.scalars().first()
             return tg_user
@@ -46,11 +50,3 @@ class TGUsersDAO(BaseDAO):
                 tg_user.last_like_time = datetime.now(tz=timezone.utc)
 
                 await session.commit()
-
-
-
-
-
-
-
-
