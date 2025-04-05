@@ -1,4 +1,5 @@
 .env
+.env-non-dev
 .venv/
 __pycache__/
 *.pyc
@@ -7,4 +8,5 @@ __pycache__/
 *.session-journal
 *.session-wal
 *.session-shm
+
 
