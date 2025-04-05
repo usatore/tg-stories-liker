@@ -27,3 +27,5 @@ async def process_user_stories(client: TelegramClient):
 
         except Exception as e:
             print(f'Не получилось достать истории пользователя {user_id}: {e}')
+
+

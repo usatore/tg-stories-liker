@@ -5,6 +5,8 @@ class Settings(BaseSettings):
     API_ID: int
     API_HASH: str
     SESSION_NAME: str
+    PHONE_NUMBER: str
+
     DB_HOST: str
     DB_PORT: int
     DB_USER: str

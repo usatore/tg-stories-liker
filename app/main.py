@@ -4,6 +4,7 @@ from app.telegram.tg_actions import process_user_stories
 from contextlib import asynccontextmanager
 from app.router import router
 from fastapi.middleware.cors import CORSMiddleware
+from app.config import settings
 
 
 @asynccontextmanager
