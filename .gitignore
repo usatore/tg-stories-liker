@@ -4,4 +4,7 @@ __pycache__/
 *.pyc
 .idea/
 *.session
+*.session-journal
+*.session-wal
+*.session-shm
 
