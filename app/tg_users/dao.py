@@ -1,4 +1,5 @@
 from app.tg_users.models import TGUsers
+from datetime import datetime, timezone
 from app.dao.base import BaseDAO
 from app.database import async_session_maker
 from sqlalchemy.exc import SQLAlchemyError
@@ -30,6 +31,21 @@ class TGUsersDAO(BaseDAO):
                 print("Database Exc")
             elif isinstance(e, Exception):
                 print("Unknown Exc")
+
+    @classmethod
+    async def update_last_like_time(cls, tg_id: int):
+
+        async with async_session_maker() as session:
+
+            result = await session.execute(
+                select(cls.model).filter(cls.model.tg_id == tg_id)
+            )
+            tg_user = result.scalars().first()
+
+            if tg_user:
+                tg_user.last_like_time = datetime.now(tz=timezone.utc)
+
+                await session.commit()
 
 
 
