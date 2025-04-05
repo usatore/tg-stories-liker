@@ -1,7 +1,9 @@
+from datetime import datetime, timedelta
 from telethon.tl.types import ReactionEmoji
 from telethon.tl.functions.stories import SendReactionRequest, GetPeerStoriesRequest
 from telethon.tl.types import User
 from telethon import TelegramClient
+from app.tg_users.dao import TGUsersDAO
 
 
 async def process_user_stories(client: TelegramClient):

@@ -5,7 +5,7 @@ from app.telegram.tg_client import client
 
 
 router = APIRouter(
-    tags=['Сервис'],
+    tags=['Сервис для лайканья сторис в Телеграме'],
 )
 
 
@@ -14,4 +14,4 @@ async def like_stories():
     try:
         await process_user_stories(client)
     except Exception as e:
-        return {"status": "error", "message": f"An error occurred: {str(e)}"}
+        return {"status": "error", "message": f"Произошла ошибка: {str(e)}"}
