@@ -1,12 +1,12 @@
 from datetime import datetime, timedelta, timezone
 
 from telethon import TelegramClient
-from telethon.tl.functions.stories import GetPeerStoriesRequest, SendReactionRequest
+from telethon.tl.functions.contacts import GetContactsRequest
+from telethon.tl.functions.stories import (GetPeerStoriesRequest,
+                                           SendReactionRequest)
 from telethon.tl.types import ReactionEmoji
 
 from app.tg_users.dao import TGUsersDAO
-
-from telethon.tl.functions.contacts import GetContactsRequest
 
 
 async def process_user_stories(client: TelegramClient):
@@ -31,14 +31,11 @@ async def process_user_stories(client: TelegramClient):
 
             last_like_time = tg_user.last_like_time
 
-
             if not last_like_time is None:
                 time_diff = datetime.now(tz=timezone.utc) - last_like_time
                 if time_diff < timedelta(days=2):
-                    print(f"Слишком рано для лайка пользователя {contact_id}")
                     continue
 
-            # print('3')
             for story in contact_stories.stories.stories:
                 await client(
                     SendReactionRequest(

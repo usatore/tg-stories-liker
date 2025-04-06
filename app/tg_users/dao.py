@@ -3,12 +3,11 @@ from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.dao.base import BaseDAO
 from app.database import async_session_maker
 from app.tg_users.models import TGUsers
 
 
-class TGUsersDAO(BaseDAO):
+class TGUsersDAO:
     model = TGUsers
 
     @classmethod
