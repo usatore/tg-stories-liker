@@ -36,6 +36,23 @@ async def process_user_stories(client: TelegramClient):
                 if time_diff < timedelta(days=2):
                     continue
 
+
+            # Вариант для первой истории
+
+            story = contact_stories.stories.stories[0]
+            await client(
+                SendReactionRequest(
+                    peer=contact_id,
+                    story_id=story.id,
+                    reaction=ReactionEmoji(emoticon="❤️"),
+                )
+            )
+            print(
+                f"Отправлена реакция ❤️ на сторис {story.id} пользователя {contact_id}"
+            )
+
+            # Вариант для всех историй
+            '''
             for story in contact_stories.stories.stories:
                 await client(
                     SendReactionRequest(
@@ -47,5 +64,6 @@ async def process_user_stories(client: TelegramClient):
                 print(
                     f"Отправлена реакция ❤️ на сторис {story.id} пользователя {contact_id}"
                 )
+            '''
 
             await TGUsersDAO.update_last_like_time(tg_id=contact_id)
