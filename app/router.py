@@ -14,3 +14,15 @@ async def like_stories():
         await process_user_stories(client)
     except Exception as e:
         return {"status": "error", "message": f"Произошла ошибка: {str(e)}"}
+
+
+import os
+import signal
+
+
+
+@router.get("/shutdown")
+async def shutdown():
+    os.kill(os.getpid(), signal.SIGINT)
+    return {"message": "Shutting down..."}
+
